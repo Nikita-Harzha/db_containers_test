@@ -1,7 +1,10 @@
 name: PostgreSQL service example
 on:
   pull_request:
-    - 'feature/**'  
+    types:
+      - opened
+    branches:  
+      - 'feature/**'
 
 jobs:
   container-job:
@@ -34,8 +37,8 @@ jobs:
       - name: Build code
         run: npm run build --if-present
 
-      # - name: Connect to PostgreSQL
-        # run: node client.js
+      - name: Connect to PostgreSQL
+        run: node index.js
 
         # Environment variables used by the `client.js` script to create a new PostgreSQL table.
         env:
